@@ -1,7 +1,7 @@
 {
-  "name": "template",
-  "version": "2.0.0",
-  "description": "Project responsible to create a template.",
+  "name": "zth-serverless-nodejs-typescript-journey",
+  "version": "1.0.0",
+  "description": "Repositório dedicado a explorar a arquitetura serverless através de um percurso com NodeJS e TypeScript.",
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
