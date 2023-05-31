@@ -5,7 +5,7 @@ module.exports = {
     { value: "docs", name: "docs:     Documentation only changes" },
     {
       value: "style",
-      name: "style:    Changes that do not affect the meaning of the code\n            (white-space, formatting, missing semi-colons, etc)",
+      name: "style:    Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)",
     },
     {
       value: "refactor",
@@ -33,12 +33,10 @@ module.exports = {
     },
     { value: "revert", name: "revert:   Reverts a previous commit" },
   ],
-  scopes: [],
-  scopeOverrides: {},
   messages: {
     type: "What type of changes are you committing:",
+    subject: "Write a short, imperative tense description of the change:",
   },
-  allowCustomScopes: true,
   allowBreakingChanges: ["feat", "fix"],
-  skipQuestions: ["body", "footer"],
+  skipQuestions: ["body", "footer", "scope"],
 };
