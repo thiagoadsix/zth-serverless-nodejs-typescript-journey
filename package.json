@@ -1,6 +1,6 @@
 {
   "name": "zth-serverless-nodejs-typescript-journey",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Repositório dedicado a explorar a arquitetura serverless através de um percurso com NodeJS e TypeScript.",
   "main": "src/index.ts",
   "scripts": {
