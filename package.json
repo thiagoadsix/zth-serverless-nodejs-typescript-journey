@@ -5,12 +5,18 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest",
     "start": "node dist/index.js",
     "dev": "nodemon",
     "prepare": "husky install",
     "commit": "git add . && git-cz",
-    "release": "standard-version"
+    "release": "standard-version",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:changed": "jest -o",
+    "test:inBand": "jest --runInBand",
+    "test:changedSince": "jest --changedSince=main",
+    "test:clearCache": "jest --clearCache"
   },
   "keywords": [
     "template",
@@ -23,6 +29,7 @@
     "@commitlint/config-conventional": "^17.6.5",
     "@types/jest": "^29.5.1",
     "@types/node": "^20.2.1",
+    "@types/uuid": "^9.0.1",
     "commitizen": "^4.3.0",
     "commitlint": "^17.6.5",
     "cz-conventional-changelog": "^3.3.0",
@@ -39,5 +46,8 @@
     "commitizen": {
       "path": "cz-customizable"
     }
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
   }
 }
