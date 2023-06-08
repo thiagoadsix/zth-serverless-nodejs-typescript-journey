@@ -7,6 +7,5 @@ export interface ReservationRepositoryContract {
     checkInDate: string,
     checkOutDate: string
   ): Promise<boolean>;
-
   create(reservation: Reservation): Promise<Reservation>;
 }
