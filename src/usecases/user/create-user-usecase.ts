@@ -3,9 +3,6 @@ import { User } from "../../entities/user";
 import { UserRepositoryContract } from "../../contracts/repository/user-repository-contract";
 import { PasswordServiceContract } from "../../contracts/service/password-service-contract";
 
-import { CreateUserException } from "../../exceptions/user/create-user-exception";
-import { ErrorCodes } from "../../exceptions/error-codes";
-
 export class CreateUserUsecase {
   constructor(
     private readonly userRepository: UserRepositoryContract,
@@ -21,10 +18,7 @@ export class CreateUserUsecase {
     const existingUser = await this.userRepository.getUserByEmail(input.email);
 
     if (existingUser) {
-      throw new CreateUserException(
-        ErrorCodes.UserAlreadyExists,
-        "User with this email already exists"
-      );
+      throw new Error("User with this email already exists");
     }
 
     const hashedPassword = await this.passwordService.hashPassword(

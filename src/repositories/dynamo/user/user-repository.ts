@@ -1,4 +1,8 @@
-import { QueryCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
+import {
+  QueryCommand,
+  PutCommand,
+  PutCommandInput,
+} from "@aws-sdk/lib-dynamodb";
 
 import { User } from "../../../entities/user";
 
@@ -10,9 +14,9 @@ export class UserRepository implements UserRepositoryContract {
   private readonly tableName = "User";
 
   async createUser(user: User): Promise<void> {
-    const params = {
+    const params: PutCommandInput = {
       TableName: this.tableName,
-      Item: user,
+      Item: { ...user },
     };
 
     const command = new PutCommand(params);
