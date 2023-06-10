@@ -1,0 +1,15 @@
+import { DynamoDBDocument } from "@aws-sdk/lib-dynamodb";
+import { DynamoDB } from "@aws-sdk/client-dynamodb";
+
+const dynamoClient = DynamoDBDocument.from(
+  new DynamoDB({
+    region: "us-east-1",
+    endpoint: "http://localhost:4566",
+    credentials: {
+      accessKeyId: "test",
+      secretAccessKey: "test",
+    },
+  })
+);
+
+export default dynamoClient;

@@ -1,13 +1,12 @@
 export class Auditable {
   createdAt: String;
   updatedAt: String;
-  deletedAt: String | null;
+  deletedAt?: String;
 
   constructor() {
     const now: String = new Date().toISOString();
     this.createdAt = now;
     this.updatedAt = now;
-    this.deletedAt = null;
   }
 
   update() {
