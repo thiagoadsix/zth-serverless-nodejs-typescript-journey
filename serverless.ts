@@ -5,7 +5,7 @@ const serverlessConfiguration: AWS = {
   frameworkVersion: "3",
   provider: {
     name: "aws",
-    runtime: "nodejs16.x",
+    runtime: "nodejs18.x",
     stage: '${opt:stage, "dev"}',
     region: '${opt:region, "us-east-1"}' as any,
   },
@@ -30,7 +30,7 @@ const serverlessConfiguration: AWS = {
       minify: false,
       sourcemap: true,
       exclude: ["aws-sdk", "nock", "mock-aws-s3"],
-      target: "node16",
+      target: "node18",
       define: { "require.resolve": undefined },
       platform: "node",
       concurrency: 10,
