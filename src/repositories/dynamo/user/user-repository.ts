@@ -54,16 +54,4 @@ export class UserRepository implements UserRepositoryContract {
       throw new Error("Could not get user by email");
     }
   }
-
-  updateUser(user: User): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
-
-  deleteUser(userId: string): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
-
-  getUserById(userId: string): Promise<User | undefined> {
-    throw new Error("Method not implemented.");
-  }
 }

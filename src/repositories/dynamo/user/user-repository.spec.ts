@@ -72,7 +72,6 @@ describe("UserRepository", () => {
   it("should return undefined when getting a user by email that does not exist", async () => {
     const mockEmail = "john.doe@email.com";
 
-    // Mock the QueryCommand to resolve with an object that does not contain Items
     dynamoMock.on(QueryCommand).resolves({});
 
     const userRepository = new UserRepository();
