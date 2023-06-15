@@ -21,6 +21,7 @@ const serverlessConfiguration: AWS = {
           },
         },
       ],
+      timeout: 900,
     },
   },
   plugins: ["serverless-esbuild", "serverless-offline"],
