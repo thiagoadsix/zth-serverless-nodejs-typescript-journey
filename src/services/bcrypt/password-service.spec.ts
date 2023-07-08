@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 
 import { PasswordService } from "./password-service";
+import { InfrastructureException } from "../../exceptions/layers/infrastructure";
 
 jest.mock("bcryptjs", () => ({
   hash: jest.fn(),
@@ -36,7 +37,7 @@ describe("PasswordService", () => {
       (bcrypt.hash as jest.Mock).mockRejectedValue(error);
 
       await expect(passwordService.hashPassword(password)).rejects.toThrow(
-        "Could not hash password"
+        InfrastructureException.ENCRYPTION_HASHING_ERROR.message
       );
       expect(bcrypt.hash).toHaveBeenCalledWith(password, 10);
     });
@@ -75,7 +76,9 @@ describe("PasswordService", () => {
 
       await expect(
         passwordService.comparePasswords(password, hashedPassword)
-      ).rejects.toThrow("Could not compare password");
+      ).rejects.toThrow(
+        InfrastructureException.ENCRYPTION_COMPARING_ERROR.message
+      );
       expect(bcrypt.compare).toHaveBeenCalledWith(password, hashedPassword);
     });
   });

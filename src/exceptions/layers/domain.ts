@@ -1,3 +1,3 @@
-module.exports = {
-  USER_ALREADY_EXISTS: { code: "0111", message: "Usuário já existe" },
+export const DomainException = {
+  USER_ALREADY_EXISTS: { code: "10", message: "Usuário já existe" },
 };

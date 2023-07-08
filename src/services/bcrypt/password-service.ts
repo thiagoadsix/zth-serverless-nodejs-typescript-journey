@@ -1,6 +1,8 @@
 import bcrypt from "bcryptjs";
 
 import { PasswordServiceContract } from "../../contracts/service/password-service-contract";
+import { Exception } from "../../exceptions/exception";
+import { InfrastructureException } from "../../exceptions/layers/infrastructure";
 
 export class PasswordService implements PasswordServiceContract {
   private readonly saltRounds = 10;
@@ -13,7 +15,10 @@ export class PasswordService implements PasswordServiceContract {
     } catch (error) {
       console.error("Error hashing password:", error);
 
-      throw new Error("Could not hash password");
+      throw new Exception(
+        InfrastructureException.ENCRYPTION_HASHING_ERROR.code,
+        InfrastructureException.ENCRYPTION_HASHING_ERROR.message
+      );
     }
   }
 
@@ -26,7 +31,10 @@ export class PasswordService implements PasswordServiceContract {
     } catch (error) {
       console.error("Error comparing password:", error);
 
-      throw new Error("Could not compare password");
+      throw new Exception(
+        InfrastructureException.ENCRYPTION_COMPARING_ERROR.code,
+        InfrastructureException.ENCRYPTION_COMPARING_ERROR.message
+      );
     }
   }
 }

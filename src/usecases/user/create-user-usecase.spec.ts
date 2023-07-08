@@ -2,6 +2,8 @@ import { UserRepositoryMock } from "../../../__tests__/mocks/repositories/user-r
 import { PasswordServiceMock } from "../../../__tests__/mocks/services/password-service-mock";
 
 import { User } from "../../entities/user";
+import { Exception } from "../../exceptions/exception";
+import { DomainException } from "../../exceptions/layers/domain";
 
 import { CreateUserUsecase } from "./create-user-usecase";
 
@@ -51,7 +53,10 @@ describe("CreateUserUsecase", () => {
     };
 
     await expect(usecase.execute(input)).rejects.toThrow(
-      new Error("User with this email already exists")
+      new Exception(
+        DomainException.USER_ALREADY_EXISTS.code,
+        DomainException.USER_ALREADY_EXISTS.message
+      )
     );
   });
 });

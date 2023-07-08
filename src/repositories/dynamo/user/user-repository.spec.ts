@@ -6,6 +6,7 @@ import { User } from "../../../entities/user";
 import dynamoClient from "./../dynamo-client";
 
 import { UserRepository } from "./user-repository";
+import { InfrastructureException } from "../../../exceptions/layers/infrastructure";
 
 describe("UserRepository", () => {
   const dynamoMock = mockClient(dynamoClient);
@@ -39,7 +40,7 @@ describe("UserRepository", () => {
 
     const userRepository = new UserRepository();
     await expect(userRepository.createUser(mockUser)).rejects.toThrow(
-      "Could not create user"
+      InfrastructureException.DATABASE_ERROR_TO_CREATE.message
     );
   });
 
@@ -53,7 +54,7 @@ describe("UserRepository", () => {
 
     dynamoMock
       .on(QueryCommand, {
-        TableName: "User",
+        TableName: "Users",
         IndexName: "emailIndex",
         KeyConditionExpression: "email = :email",
         ExpressionAttributeValues: {
@@ -64,6 +65,8 @@ describe("UserRepository", () => {
 
     const userRepository = new UserRepository();
     const user = await userRepository.getUserByEmail(mockEmail);
+
+    console.log({ user });
 
     expect(user).toEqual(mockUser);
     expect(dynamoMock.calls()).toHaveLength(1);
@@ -87,7 +90,7 @@ describe("UserRepository", () => {
 
     const userRepository = new UserRepository();
     await expect(userRepository.getUserByEmail(mockEmail)).rejects.toThrow(
-      "Could not get user by email"
+      InfrastructureException.DATABASE_ERROR_TO_GET.message
     );
   });
 });

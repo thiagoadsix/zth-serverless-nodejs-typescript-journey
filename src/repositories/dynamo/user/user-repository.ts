@@ -9,6 +9,8 @@ import { User } from "../../../entities/user";
 import { UserRepositoryContract } from "../../../contracts/repository/user-repository-contract";
 
 import dynamo from "../dynamo-client";
+import { Exception } from "../../../exceptions/exception";
+import { InfrastructureException } from "../../../exceptions/layers/infrastructure";
 
 export class UserRepository implements UserRepositoryContract {
   private readonly tableName = "Users";
@@ -25,7 +27,10 @@ export class UserRepository implements UserRepositoryContract {
       await dynamo.send(command);
     } catch (error) {
       console.error("Error creating user:", error);
-      throw new Error("Could not create user");
+      throw new Exception(
+        InfrastructureException.DATABASE_ERROR_TO_CREATE.code,
+        InfrastructureException.DATABASE_ERROR_TO_CREATE.message
+      );
     }
   }
 
@@ -51,7 +56,10 @@ export class UserRepository implements UserRepositoryContract {
       return result.Items[0] as User;
     } catch (error) {
       console.error("Error getting user by email:", error);
-      throw new Error("Could not get user by email");
+      throw new Exception(
+        InfrastructureException.DATABASE_ERROR_TO_GET.code,
+        InfrastructureException.DATABASE_ERROR_TO_GET.message
+      );
     }
   }
 }
