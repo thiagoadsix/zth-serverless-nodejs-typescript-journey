@@ -11,7 +11,7 @@ import { UserRepositoryContract } from "../../../contracts/repository/user-repos
 import dynamo from "../dynamo-client";
 
 export class UserRepository implements UserRepositoryContract {
-  private readonly tableName = "User";
+  private readonly tableName = "Users";
 
   async createUser(user: User): Promise<void> {
     const params: PutCommandInput = {

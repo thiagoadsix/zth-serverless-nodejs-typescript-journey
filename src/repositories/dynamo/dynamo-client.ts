@@ -11,9 +11,19 @@ const unmarshallOptions = {
   wrapNumbers: false,
 };
 
-const dynamoClient = DynamoDBDocumentClient.from(new DynamoDBClient({}), {
-  marshallOptions,
-  unmarshallOptions,
-});
+const dynamoClient = DynamoDBDocumentClient.from(
+  new DynamoDBClient({
+    region: "us-east-1",
+    endpoint: "http://localhost:4566",
+    credentials: {
+      accessKeyId: "test",
+      secretAccessKey: "test",
+    },
+  }),
+  {
+    marshallOptions,
+    unmarshallOptions,
+  }
+);
 
 export default dynamoClient;
